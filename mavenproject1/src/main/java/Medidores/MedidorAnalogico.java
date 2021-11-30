@@ -30,6 +30,11 @@ public class MedidorAnalogico extends Medidor {
     public void setLecturaa(int Lecturaa){
         this.Lecturaa=Lecturaa;
     }
+
+    @Override
+    public double calcularValorPagar(LocalDateTime fechaAccion) {
+       return 0;
+    }
     
     
 }
