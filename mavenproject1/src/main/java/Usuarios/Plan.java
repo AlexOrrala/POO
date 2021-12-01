@@ -14,10 +14,14 @@ public class Plan {
     private String nombre;
     private double costo;
     private ArrayList<Provincias> provincia;
-    public Plan(String nombre, double costo,ArrayList<Provincias> provincia){
+    private double cargoBase;
+    private ArrayList<Double> horaspico;
+    public Plan(String nombre, double costo,ArrayList<Provincias> provincia,double cargoBase, ArrayList<Double> horaspico){
         this.nombre=nombre;
         this.costo=costo;
         this.provincia=provincia;
+        this.cargoBase=cargoBase;
+        this.horaspico=horaspico;
     }
     public String getNombre(){
         return nombre;
@@ -27,5 +31,11 @@ public class Plan {
     }
     public ArrayList<Provincias> getProvincia(){
         return provincia;
+    }
+    public double getCargoBase(){
+        return cargoBase;
+    }
+    public ArrayList<Double> getHoraspico(){
+        return horaspico;
     }
 }
