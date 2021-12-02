@@ -4,6 +4,9 @@
  */
 package Medidores;
 
+import Plan.PlanEnergia;
+import Plan.Provincias;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -13,8 +16,8 @@ import java.time.LocalDateTime;
 public class MedidorAnalogico extends Medidor {
     private LocalDateTime FechaToma;
     private double kilovatios;
-    public MedidorAnalogico(LocalDateTime ultimamed,int Lecturaa){
-        super();
+    public MedidorAnalogico(String codigo,PlanEnergia plan,String direccion,LocalDate ultima_cobrada,Provincias prov){
+        super( codigo, plan, direccion, ultima_cobrada, prov);
     }
 
     @Override
