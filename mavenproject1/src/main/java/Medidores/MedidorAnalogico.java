@@ -4,6 +4,7 @@
  */
 package Medidores;
 
+import Usuarios.Plan;
 import java.time.LocalDateTime;
 
 /**
@@ -12,16 +13,16 @@ import java.time.LocalDateTime;
  */
 public class MedidorAnalogico extends Medidor {
     private LocalDateTime ultimamed;
-    private int Lecturaa;
-    public MedidorAnalogico(LocalDateTime ultimamed,int Lecturaa){
-        super();
+    private double Lecturaa;
+    public MedidorAnalogico(Plan plan,LocalDateTime ultimamed,double Lecturaa){
+        super(plan);
         this.ultimamed=ultimamed;
         this.Lecturaa=Lecturaa;
     }
     public LocalDateTime getUltimamed(){
         return ultimamed;
     }
-    public int getLectuaraa(){
+    public double getLectuaraa(){
         return Lecturaa;
     }
     public void setUltimamed(LocalDateTime ultimamed ){
@@ -33,7 +34,9 @@ public class MedidorAnalogico extends Medidor {
 
     @Override
     public double calcularValorPagar(LocalDateTime fechaAccion) {
-       return 0;
+        ultimamed=fechaAccion;
+        double pagar=Lecturaa*plan.getCosto();
+        return pagar;
     }
     
     
