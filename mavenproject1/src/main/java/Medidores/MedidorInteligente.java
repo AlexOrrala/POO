@@ -32,6 +32,7 @@ public class MedidorInteligente extends Medidor {
         };
         timer.schedule(anadir,0,1800000);
         }
+    @Override
     public double calcularValorPagar(LocalDateTime fechacambio){
         antiguas.add(LocalDateTime.now());
         kilovatios.add(Math.floor(Math.random()*10));
