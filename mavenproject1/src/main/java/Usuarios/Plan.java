@@ -16,8 +16,8 @@ public class Plan {
     private double costo;
     private ArrayList<Provincias> provincia;
     private double cargoBase;
-    private ArrayList<LocalDateTime> horaspico;
-    public Plan(String nombre, double costo,ArrayList<Provincias> provincia,double cargoBase, ArrayList<LocalDateTime> horaspico){
+    private ArrayList<Integer> horaspico;
+    public Plan(String nombre, double costo,ArrayList<Provincias> provincia,double cargoBase, ArrayList<Integer> horaspico){
         this.nombre=nombre;
         this.costo=costo;
         this.provincia=provincia;
@@ -36,7 +36,7 @@ public class Plan {
     public double getCargoBase(){
         return cargoBase;
     }
-    public ArrayList<LocalDateTime> getHoraspico(){
+    public ArrayList<Integer> getHoraspico(){
         return horaspico;
     }
 }
