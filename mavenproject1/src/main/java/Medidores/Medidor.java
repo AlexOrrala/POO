@@ -4,7 +4,12 @@
  */
 package Medidores;
 
+import Plan.PlanEnergia;
+import Plan.Provincias;
+import Usuarios.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,10 +17,13 @@ import java.time.LocalDateTime;
  */
 public abstract class Medidor {
     private String codigo;
-    private static int numdeserie=000;
+    private PlanEnergia plan;
+    private String direccion;
+    private ArrayList<Lectura> lectura;
+    private LocalDate ultima_cobrada;
+    private Provincias prov;
+    
     public Medidor(){
-        codigo="Med"+numdeserie;
-        numdeserie++;
     }
     public abstract double calcularValorPagar(LocalDateTime fechaAccion);
     
