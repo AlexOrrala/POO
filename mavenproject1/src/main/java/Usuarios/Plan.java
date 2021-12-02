@@ -4,6 +4,7 @@
  */
 package Usuarios;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +16,8 @@ public class Plan {
     private double costo;
     private ArrayList<Provincias> provincia;
     private double cargoBase;
-    private ArrayList<Double> horaspico;
-    public Plan(String nombre, double costo,ArrayList<Provincias> provincia,double cargoBase, ArrayList<Double> horaspico){
+    private ArrayList<LocalDateTime> horaspico;
+    public Plan(String nombre, double costo,ArrayList<Provincias> provincia,double cargoBase, ArrayList<LocalDateTime> horaspico){
         this.nombre=nombre;
         this.costo=costo;
         this.provincia=provincia;
@@ -35,7 +36,7 @@ public class Plan {
     public double getCargoBase(){
         return cargoBase;
     }
-    public ArrayList<Double> getHoraspico(){
+    public ArrayList<LocalDateTime> getHoraspico(){
         return horaspico;
     }
 }
