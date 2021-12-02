@@ -29,7 +29,7 @@ public class Administrador extends Usuario{
                 x = 5;
             }
         }
-        if(x!=5){
+        if(x==5){
         PlanEnergia plan = new PlanEnergia(nombreplan,costokv,provincias,horas);
         planactual.add(plan);
         }
@@ -43,18 +43,19 @@ public class Administrador extends Usuario{
             }
         }
         if(x!=5){
-            String numero="";
+            String nombre="";
             String direccion="";
             String contraseña ="";
             String tipo ="";
-            System.out.println("Ingrese numero de cedula");
-            numero = sc.nextLine();
             contraseña = generarContraseña();
             System.out.println("Ingrese dirección:");
             direccion = sc.nextLine();
             System.out.println("Ingrese tipo del medidor:");
             System.out.println("a)Analógico\nb)Digital");
             tipo = sc.nextLine();
+            System.out.println("Ingrese nombre del Plan:");
+            nombre = sc.nextLine();
+            
         }
     }
     public String generarContraseña(){
