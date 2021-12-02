@@ -24,7 +24,8 @@ public abstract class Medidor {
     private LocalDate ultima_cobrada;
     private Provincias prov;
     
-    public Medidor(){
+    public Medidor(String codigo,PlanEnergia plan,String direccion,LocalDate ultima_cobrada,Provincias prov){
+        lectura = new ArrayList<Lectura>();
     }
     public abstract double calcularValorPagar(LocalDateTime fechaAccion);
     
