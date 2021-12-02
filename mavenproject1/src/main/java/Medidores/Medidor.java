@@ -4,6 +4,7 @@
  */
 package Medidores;
 
+import Usuarios.Plan;
 import java.time.LocalDateTime;
 
 /**
@@ -13,9 +14,11 @@ import java.time.LocalDateTime;
 public abstract class Medidor {
     private String codigo;
     private static int numdeserie=000;
-    public Medidor(){
+    protected Plan plan;
+    public Medidor(Plan plan){
         codigo="Med"+numdeserie;
         numdeserie++;
+        this.plan=plan;
     }
     public abstract double calcularValorPagar(LocalDateTime fechaAccion);
     
