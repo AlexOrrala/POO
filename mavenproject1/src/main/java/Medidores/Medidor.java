@@ -75,6 +75,11 @@ public abstract class Medidor {
     public PlanEnergia getPlan(){
         return plan;
     }
+
+    public static ArrayList<String> getCodesmedidores() {
+        return codesmedidores;
+    }
+    
     
     public String getDireccion(){
         return direccion;
@@ -88,7 +93,9 @@ public abstract class Medidor {
     public void setUltima_cobrada(LocalDateTime ultima_cobrada){
         this.ultima_cobrada=ultima_cobrada;
     }
-    
+    public void agregarlectura(Lectura l1){
+        lectura.add(l1);
+    }
     public abstract double calcularValorPagar(LocalDateTime fechaAccion);
     
 }

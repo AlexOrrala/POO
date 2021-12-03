@@ -28,12 +28,27 @@ public class Abonado extends Usuario{
     return "Usuario"+super.getNombre()+"\nContraseña:"+super.getContrasenia();
     }
 
+    public ArrayList<Medidor> getListasmedidor() {
+        return listasmedidor;
+    }
+    
+
     public static ArrayList<Abonado> getAbonado() {
         return abonado;
     }
     public static void agregarAbonado(Abonado abo){
-        abonado.add(abo);
-        
+        abonado.add(abo); 
+    }
+    public static String Duenomedidor(String codigo){
+        String abonado_resultante="";
+        for(Abonado c : abonado){
+            for(Medidor m : c.getListasmedidor()){
+                if(m.getCodigo().equals(codigo)){
+                    abonado_resultante = c.getNombre();
+                }
+            }
+        }
+        return abonado_resultante;
     }
     
 }
