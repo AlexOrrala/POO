@@ -45,6 +45,11 @@ public class MedidorAnalogico extends Medidor {
         return listasmedidor;
     }
 
+    public LocalDateTime getFechaToma() {
+        return FechaToma;
+    }
+    
+
     
     
 }
