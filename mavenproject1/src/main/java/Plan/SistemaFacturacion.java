@@ -17,18 +17,26 @@ import java.util.ArrayList;
 public class SistemaFacturacion {
     private Medidor medidor;
     private LocalDateTime fecha_emision;
-    private Usuario usuario;
     private Lectura anterior;
     private Lectura actual;
+    private int dias_fact;
+    private double consumokv;
+    private double Cargofijo;
+    private double totalpagar;
     private static ArrayList<SistemaFacturacion> facturas = new ArrayList<SistemaFacturacion>();
 
-    public SistemaFacturacion(Medidor medidor, Usuario usuario, Lectura anterior, Lectura actual,LocalDateTime fecha_emision) {
+    public SistemaFacturacion(Medidor medidor, LocalDateTime fecha_emision, Lectura anterior, Lectura actual, int dias_fact, double consumokv, double Cargofijo, double totalpagar) {
         this.medidor = medidor;
-        this.usuario = usuario;
+        this.fecha_emision = fecha_emision;
         this.anterior = anterior;
         this.actual = actual;
-        this.fecha_emision = fecha_emision;
+        this.dias_fact = dias_fact;
+        this.consumokv = consumokv;
+        this.Cargofijo = Cargofijo;
+        this.totalpagar = totalpagar;
     }
+
+    
     
     public static void aregarfactura(SistemaFacturacion factura){
         facturas.add(factura);
@@ -42,9 +50,6 @@ public class SistemaFacturacion {
         return medidor;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
 
     public Lectura getAnterior() {
         return anterior;
