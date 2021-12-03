@@ -17,11 +17,13 @@ public class PlanEnergia {
     private double costoK;
     private ArrayList<Provincias> provincia;
     private ArrayList<HorarioPico> picos;
-    public PlanEnergia(String nombre, double costoK,ArrayList<Provincias> provincia,ArrayList<HorarioPico> picos){
+    private double cargob;
+    public PlanEnergia(String nombre, double costoK,double cargob,ArrayList<Provincias> provincia,ArrayList<HorarioPico> picos){
         this.nombre=nombre;
         this.costoK=costoK;
         this.provincia=provincia;
         this.picos = picos;
+        this.cargob=cargob;
     }
     public String getNombre(){
         return nombre;
@@ -32,6 +34,13 @@ public class PlanEnergia {
     public ArrayList<Provincias> getProvincia(){
         return provincia;
     }
+    public ArrayList<HorarioPico> getPicos(){
+        return picos;
+    }
+    public double getCargob(){
+        return cargob;
+    }
+        
 }
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

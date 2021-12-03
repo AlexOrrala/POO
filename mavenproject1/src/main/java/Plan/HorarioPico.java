@@ -14,4 +14,15 @@ import java.time.LocalTime;
 public class HorarioPico {
     private LocalTime horarioinicio;
     private LocalTime horaFin;
+    public HorarioPico(LocalTime horarioinicio,LocalTime horafin){
+        this.horarioinicio=horarioinicio;
+        this.horaFin=horafin;
+    }
+    public LocalTime getHorarioinicio(){
+        return horarioinicio;
+    }
+    public LocalTime getHorafin(){
+        return horaFin;
+    }
+        
 }
