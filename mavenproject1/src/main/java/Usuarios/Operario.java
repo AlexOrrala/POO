@@ -27,16 +27,21 @@ public class Operario extends Usuario{
         Lectura l; 
         Double kv;
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
-            if(c.getCodigo()== codigo){
-                System.out.println("Ingrese lectura actual del medidor:"+codigo);
+            if(c.getCodigo().equals(codigo)){
+                System.out.println("Medidor Digital a nombre de "+ Abonado.Duenomedidor(codigo) +":+codigo");
+                System.out.println("Ultima lectura realizada: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getFechaToma() );
+                System.out.println("Ultima lectura anterior: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios());
+                System.out.println("Lectura Actual:");
+                do{
                 kv = sc.nextDouble();
+                }while(kv.equals(""));
                 l = new Lectura(LocalDateTime.now(), kv);
                 l.setOperario(this);
                 c.agregarlectura(l);
             }
         }
         for(MedidorAnalogico c : MedidorAnalogico.getListasmedidor()){
-            if(c.getCodigo()== codigo){
+            if(c.getCodigo().equals(codigo)){
                 System.out.println("Ingrese lectura actual del medidor:"+codigo);
                 kv = sc.nextDouble();
                 l = new Lectura(LocalDateTime.now(), kv);
@@ -45,4 +50,5 @@ public class Operario extends Usuario{
             }
         }
     }
+    
 }
