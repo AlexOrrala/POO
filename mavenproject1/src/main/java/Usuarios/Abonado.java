@@ -33,6 +33,7 @@ public class Abonado extends Usuario{
     }
     public static void agregarAbonado(Abonado abo){
         abonado.add(abo);
+        
     }
     
 }
