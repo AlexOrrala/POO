@@ -8,6 +8,7 @@ package Usuarios;
 
 import Medidores.Lectura;
 import Medidores.Medidor;
+import Medidores.MedidorAnalogico;
 import Medidores.MedidorDigital;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -26,6 +27,15 @@ public class Operario extends Usuario{
         Lectura l; 
         Double kv;
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
+            if(c.getCodigo()== codigo){
+                System.out.println("Ingrese lectura actual del medidor:"+codigo);
+                kv = sc.nextDouble();
+                l = new Lectura(LocalDateTime.now(), kv);
+                l.setOperario(this);
+                c.agregarlectura(l);
+            }
+        }
+        for(MedidorAnalogico c : MedidorAnalogico.getListasmedidor()){
             if(c.getCodigo()== codigo){
                 System.out.println("Ingrese lectura actual del medidor:"+codigo);
                 kv = sc.nextDouble();
