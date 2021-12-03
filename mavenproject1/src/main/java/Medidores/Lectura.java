@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Lectura{
-    private Local Datetime FechaToma;
+    private LocalDateTime FechaToma;
     private double kilovatios;
     public Lectura(LocalDateTime FechaToma, double kilovatios){
         this.FechaToma=FechaToma;
