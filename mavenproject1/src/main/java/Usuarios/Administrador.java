@@ -129,7 +129,13 @@ public class Administrador extends Usuario{
         cadena = "Cargo Fijo del Plan:" + c.getPlan().getCargob()+"\n";
         cadena = "Totalpagar" + c.calcularValorPagar(hoy)+"\n";
             SistemaFacturacion s = new SistemaFacturacion(c, hoy, c.getLectura().get(c.getLectura().size() -1),c.getLectura().get(c.getLectura().size()) , dias,c.getKilovatios(), c.getPlan().getCargob(), c.calcularValorPagar(hoy));
+            s.setFormatofac(cadena);
             SistemaFacturacion.aregarfactura(s);
+            for(Abonado a: Abonado.getAbonado()){
+               if(Abonado.Duenomedidor(c.getCodigo()).equals(a) ){
+                   a.aregarfactura(s);
+               }
+            }
         }
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
         String cadena;
@@ -149,6 +155,11 @@ public class Administrador extends Usuario{
         cadena = "Totalpagar" + c.calcularValorPagar(hoy)+"\n";
             SistemaFacturacion s = new SistemaFacturacion(c, hoy, c.getLectura().get(c.getLectura().size() -1),c.getLectura().get(c.getLectura().size()) , dias,c.getKilovatios(), c.getPlan().getCargob(), c.calcularValorPagar(hoy));
             SistemaFacturacion.aregarfactura(s);
+            for(Abonado a: Abonado.getAbonado()){
+               if(Abonado.Duenomedidor(c.getCodigo()).equals(a) ){
+                   a.aregarfactura(s);
+               }
+            }
         }
         
     }

@@ -40,10 +40,14 @@ public class MedidorAnalogico extends Medidor {
     public double getKilovatios() {
         return kilovatios;
     }
+    public LocalDateTime getFechaToma(){
+        return FechaToma;
+    }
     
     public static ArrayList<MedidorAnalogico> getListasmedidor() {
         return listasmedidor;
     }
+    
 
     
     

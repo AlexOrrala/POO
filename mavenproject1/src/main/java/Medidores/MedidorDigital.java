@@ -37,6 +37,11 @@ public class MedidorDigital extends Medidor{
         };
         timer.schedule(anadir,0,1800000);
     }
+
+    public static ArrayList<MedidorDigital> getListasmedidor() {
+        return listasmedidor;
+    }
+    
     public static void agregarMedidor(MedidorDigital medidor){
         listasmedidor.add(medidor);
     }
