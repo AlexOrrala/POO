@@ -22,19 +22,15 @@ public class Operario extends Usuario{
     public Operario(String nombre, String contrasenia) {
         super(nombre, contrasenia);
     }
-    public void registrarmedicion(String codigo){
+    public void registrarmedicion(String codigo,Double kv){
         Scanner sc = new Scanner(System.in);
         Lectura l; 
-        Double kv;
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
             if(c.getCodigo().equals(codigo)){
                 System.out.println("Medidor Digital a nombre de "+ Abonado.Duenomedidor(codigo).getNombre() +":+codigo");
                 System.out.println("Ultima lectura realizada: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getFechaToma() );
                 System.out.println("Ultima lectura anterior: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios());
                 System.out.println("Lectura Actual:");
-                do{
-                kv = sc.nextDouble();
-                }while(kv.equals(""));
                 System.out.println("Kilovatios consumidos:"+  (c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios() - kv));
                 l = new Lectura(LocalDateTime.now(), kv);
                 l.setOperario(this);

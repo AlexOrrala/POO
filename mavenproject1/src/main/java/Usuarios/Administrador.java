@@ -22,7 +22,6 @@ import java.util.Scanner;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Administrador extends Usuario{
-
     public Administrador(String nombre, String contrasenia) {
         super(nombre, contrasenia);
     }
@@ -164,7 +163,7 @@ public class Administrador extends Usuario{
         
     }
     
-    public String generarContraseña(){
+    public static String generarContraseña(){
         char[] voca = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'};
         String contraseña="";
         Random randon = new Random();
@@ -194,7 +193,6 @@ public class Administrador extends Usuario{
         }
         cantidad++;
         }while(cantidad<9 );
-        System.out.println(contraseña);
         int randon_n = 0;
         do{
             

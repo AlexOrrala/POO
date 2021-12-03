@@ -27,7 +27,6 @@ public class MedidorAnalogico extends Medidor {
     @Override
     public double calcularValorPagar(LocalDateTime fechaAccion) {
        Lectura anadida=new Lectura(FechaToma,kilovatios);
-       lectura.add(anadida);
        ultima_cobrada = fechaAccion;
        double costo=kilovatios*plan.getCostoK();
        return costo;

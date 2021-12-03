@@ -22,7 +22,7 @@ public abstract class Medidor {
     private String direccion;
     protected ArrayList<Lectura> lectura;
     protected LocalDateTime ultima_cobrada;
-    private static ArrayList<String> codesmedidores= new ArrayList<>();
+    private static ArrayList<String> codesmedidores= new ArrayList<String>();
     public String generarCodigo(){
         char[] voca = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'};
         String codigoa="";
@@ -53,7 +53,6 @@ public abstract class Medidor {
         }
         cantidad++;
         }while(cantidad<6 );
-        System.out.println(codigoa);
         int randon_n = 0;
         return codigoa;
     }
@@ -65,9 +64,8 @@ public abstract class Medidor {
             codigo=generarCodigo();
         }while(codesmedidores.contains(codigo));
         codesmedidores.add(codigo);
-        Lectura primera= new Lectura(ultima_cobrada,0);
-        lectura=new ArrayList<>();
-        lectura.add(primera);
+        lectura=new ArrayList<Lectura>();
+        lectura.add( new Lectura(ultima_cobrada,0));
     }
     public String getCodigo(){
         return codigo;
