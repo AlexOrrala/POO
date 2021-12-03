@@ -8,7 +8,7 @@ package Usuarios;
  *
  * @author samu_
  */
-public class usuario{
+public class Usuario{
     public String nombre;
     public String contrasenia;
     public Usuario(String nombre, String contrasenia){
@@ -16,7 +16,7 @@ public class usuario{
         this.contrasenia=contrasenia;
     }
     public String getNombre(){
-        return nombre
+        return nombre;
     }
     public String getContrasenia(){
         return contrasenia;

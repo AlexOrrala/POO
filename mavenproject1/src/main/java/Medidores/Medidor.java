@@ -75,6 +75,7 @@ public abstract class Medidor {
     public PlanEnergia getPlan(){
         return plan;
     }
+    
     public String getDireccion(){
         return direccion;
     }
@@ -87,6 +88,7 @@ public abstract class Medidor {
     public void setUltima_cobrada(LocalDateTime ultima_cobrada){
         this.ultima_cobrada=ultima_cobrada;
     }
+    
     public abstract double calcularValorPagar(LocalDateTime fechaAccion);
     
 }

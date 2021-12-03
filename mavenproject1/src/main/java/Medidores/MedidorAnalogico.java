@@ -28,7 +28,7 @@ public class MedidorAnalogico extends Medidor {
     public double calcularValorPagar(LocalDateTime fechaAccion) {
        Lectura anadida=new Lectura(FechaToma,kilovatios);
        lectura.add(anadida);
-       ultima_cobrada=fechaAccion;
+       ultima_cobrada = fechaAccion;
        double costo=kilovatios*plan.getCostoK();
        return costo;
     }
@@ -36,6 +36,16 @@ public class MedidorAnalogico extends Medidor {
     public static void agregarMedidor(MedidorAnalogico medidor){
         listasmedidor.add(medidor);
     }
+
+    public double getKilovatios() {
+        return kilovatios;
+    }
+    
+    public static ArrayList<MedidorAnalogico> getListasmedidor() {
+        return listasmedidor;
+    }
+
+    
     
 }
 /*
