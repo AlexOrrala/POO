@@ -7,6 +7,7 @@ package Usuarios;
 
 import Medidores.Medidor;
 import Plan.PlanEnergia;
+import Plan.SistemaFacturacion;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +18,7 @@ public class Abonado extends Usuario{
     private String correo;
     private ArrayList<Medidor> listasmedidor;
     private static ArrayList<Abonado> abonado = new ArrayList<Abonado>();
+    private ArrayList<SistemaFacturacion> facturasabo=new ArrayList<>();
     public Abonado(String nombre, String contrasenia) {
         super(nombre, contrasenia);
         listasmedidor = new ArrayList<Medidor>();
@@ -34,6 +36,17 @@ public class Abonado extends Usuario{
     public static void agregarAbonado(Abonado abo){
         abonado.add(abo);
         
+    }
+    public ArrayList<SistemaFacturacion> getFacturasabo(){
+        return facturasabo;
+    }
+    public void ConsultarFcatura(){
+        System.out.println("Facturas asociadas");
+        System.out.printf("%10s %10s %10s", "Numero Facturas", "Fecha Emision", "Codigo Medidor");
+        System.out.println();
+        for (SistemaFacturacion i: facturasabo){
+            
+        }
     }
     
 }
