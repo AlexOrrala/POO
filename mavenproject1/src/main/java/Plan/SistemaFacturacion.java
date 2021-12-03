@@ -22,6 +22,7 @@ public class SistemaFacturacion {
     private int dias_fact;
     private double consumokv;
     private double Cargofijo;
+    private String formatofac;
     private double totalpagar;
     private static ArrayList<SistemaFacturacion> facturas = new ArrayList<SistemaFacturacion>();
 
@@ -41,7 +42,14 @@ public class SistemaFacturacion {
     public static void aregarfactura(SistemaFacturacion factura){
         facturas.add(factura);
     }
+
+    public void setFormatofac(String formatofac) {
+        this.formatofac = formatofac;
+    }
     
+    public String toString(){
+        return formatofac;
+    }
     
     
     
