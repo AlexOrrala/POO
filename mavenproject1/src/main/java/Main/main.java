@@ -17,27 +17,26 @@ import java.util.Scanner;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class main {
-    
+    private static ArrayList<Administrador> Admins = new ArrayList<Administrador>();
+    private static ArrayList<Operario> Operarios = new ArrayList<Operario>();
     public static void main(String[] args){
-        Inicializarvalores();
         int menu0=0;
         Scanner sc = new Scanner(System.in);
         do{
-            System.out.println("1)Ingresar.");
+            System.out.println("1)Iniciar Sesión.");
+            
             System.out.println("2)Salir.\n");
             menu0 = sc.nextInt();
         switch(menu0){
             case 1:
-                System.out.println("xd");
+                Login();
                 break;
         }
         }while(menu0!=2);
         
     }
-    
-    public static void Inicializarvalores(){
-        ArrayList<Administrador> Admins = new ArrayList<Administrador>();
-        ArrayList<Operario> Operarios = new ArrayList<Operario>();
+
+    private static void Login() {        
         Admins.add(new Administrador("admin", "superadmin"));
         Operarios.add(new Operario("operario1", "contraseña1"));
         Operarios.add(new Operario("operario2", "contraseña2"));
@@ -49,7 +48,7 @@ public class main {
         ArrayList<HorarioPico> horaspicos= new ArrayList<HorarioPico>();
         PlanEnergia.Agregarplan(new PlanEnergia("Plan1",5.5,500.0,provincias1,horaspicos));
         PlanEnergia.Agregarplan(new PlanEnergia("Plan2",4.5,300.0,provincias1,horaspicos));
-        Abonado.agregarAbonado(new Abonado("Abonado1",Administrador.generarContraseña()));
+        Abonado.agregarAbonado(new Abonado("Abonado1","1234"));
         Abonado.agregarAbonado(new Abonado("Abonado2",Administrador.generarContraseña()));
         int contador =0;
         for(Abonado c: Abonado.getAbonado()){
@@ -61,8 +60,66 @@ public class main {
             }
             contador++;
         }
-        //Operarios.get(0).registrarmedicion(Medidor.getCodesmedidores().get(0),120.0);
-        //Operarios.get(0).registrarmedicion(Medidor.getCodesmedidores().get(0),100.0);
+        Operarios.get(0).registrarmedicion(Medidor.getCodesmedidores().get(0),120.0);
+        Operarios.get(0).registrarmedicion(Medidor.getCodesmedidores().get(0),100.0);
+        
+        
+        
+        Scanner sc = new Scanner(System.in);
+        String usuario,contrasena;
+        System.out.println("Usuario:");
+        usuario = sc.nextLine();
+        System.out.println("Contraseña:");
+        contrasena = sc.nextLine();
+        ob_Usuarios(usuario, contrasena);
+        
+    }
+    private static void ob_Usuarios(String nombre,String contrasenia){
+        ArrayList<String> listaf= new ArrayList<String>();
+        boolean inicio = false;
+        for(Abonado c: Abonado.getAbonado()){
+            if(c.getNombre().equals(nombre) && c.getContrasenia().equals(contrasenia)){
+            inicio = true;
+        }
+            listaf.add(c.getNombre());
+       }
+        for(Administrador c: Admins){
+            if(c.getNombre().equals(nombre) && c.getContrasenia().equals(contrasenia)){
+                inicio = true;
+                Admin();
+        }
+       }
+        for(Operario c: Operarios){
+            if(c.getNombre().equals(nombre) && c.getContrasenia().equals(contrasenia)){
+                inicio = true;
+        }
+       }
+        if(inicio == false){
+            System.out.println("Error el usuario y contraseña no coinciden con ninguna cuenta.");
+        }
+    }
+    private static ArrayList<String> ob_Contrasena(){
+        ArrayList<String> listaf= new ArrayList<String>();
+        for(Abonado c: Abonado.getAbonado()){
+            listaf.add(c.getContrasenia());
+       }
+        for(Administrador c: Admins){
+            listaf.add(c.getContrasenia());
+       }
+        for(Operario c: Operarios){
+            listaf.add(c.getContrasenia());
+       }
+        return listaf;
+    }
+
+    private static void Admin() {
+        int menu=0;
+        do{
+            switch(menu){
+                case 1:
+                    break;
+            }
+        }while();
     }
 
 }

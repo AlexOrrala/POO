@@ -31,7 +31,6 @@ public class MedidorDigital extends Medidor{
             public void run() {
                 FechaToma=LocalDateTime.now();
                 kilovatios=Math.floor(Math.random()*10);
-                lectura.add(new Lectura(FechaToma,kilovatios));
             }
             
         };

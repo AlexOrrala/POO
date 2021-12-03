@@ -64,8 +64,6 @@ public abstract class Medidor {
             codigo=generarCodigo();
         }while(codesmedidores.contains(codigo));
         codesmedidores.add(codigo);
-        lectura=new ArrayList<Lectura>();
-        lectura.add( new Lectura(ultima_cobrada,0));
     }
     public String getCodigo(){
         return codigo;
