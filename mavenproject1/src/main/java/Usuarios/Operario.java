@@ -28,7 +28,7 @@ public class Operario extends Usuario{
         Double kv;
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
             if(c.getCodigo().equals(codigo)){
-                System.out.println("Medidor Digital a nombre de "+ Abonado.Duenomedidor(codigo) +":+codigo");
+                System.out.println("Medidor Digital a nombre de "+ Abonado.Duenomedidor(codigo).getNombre() +":+codigo");
                 System.out.println("Ultima lectura realizada: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getFechaToma() );
                 System.out.println("Ultima lectura anterior: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios());
                 System.out.println("Lectura Actual:");

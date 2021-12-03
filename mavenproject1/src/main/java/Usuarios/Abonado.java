@@ -7,6 +7,7 @@ package Usuarios;
 
 import Medidores.Medidor;
 import Plan.PlanEnergia;
+import Plan.SistemaFacturacion;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +18,7 @@ public class Abonado extends Usuario{
     private String correo;
     private ArrayList<Medidor> listasmedidor;
     private static ArrayList<Abonado> abonado = new ArrayList<Abonado>();
+    private ArrayList<SistemaFacturacion> facturas = new ArrayList<SistemaFacturacion>();
     public Abonado(String nombre, String contrasenia) {
         super(nombre, contrasenia);
         listasmedidor = new ArrayList<Medidor>();
@@ -32,6 +34,7 @@ public class Abonado extends Usuario{
         return listasmedidor;
     }
     
+    
 
     public static ArrayList<Abonado> getAbonado() {
         return abonado;
@@ -39,16 +42,19 @@ public class Abonado extends Usuario{
     public static void agregarAbonado(Abonado abo){
         abonado.add(abo); 
     }
-    public static String Duenomedidor(String codigo){
-        String abonado_resultante="";
+    public static Abonado Duenomedidor(String codigo){
+        Abonado abonado_resultante = new Abonado("user", "cod");
         for(Abonado c : abonado){
             for(Medidor m : c.getListasmedidor()){
                 if(m.getCodigo().equals(codigo)){
-                    abonado_resultante = c.getNombre();
+                    abonado_resultante = c;
                 }
             }
         }
         return abonado_resultante;
+    }
+    public void aregarfactura(SistemaFacturacion factura){
+        facturas.add(factura);
     }
     
 }
