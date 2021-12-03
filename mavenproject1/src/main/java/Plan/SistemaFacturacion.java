@@ -24,6 +24,7 @@ public class SistemaFacturacion {
     private double Cargofijo;
     private String formatofac;
     private double totalpagar;
+    private String codigofac;
     private static ArrayList<SistemaFacturacion> facturas = new ArrayList<SistemaFacturacion>();
 
     public SistemaFacturacion(Medidor medidor, LocalDateTime fecha_emision, Lectura anterior, Lectura actual, int dias_fact, double consumokv, double Cargofijo, double totalpagar) {
@@ -35,6 +36,19 @@ public class SistemaFacturacion {
         this.consumokv = consumokv;
         this.Cargofijo = Cargofijo;
         this.totalpagar = totalpagar;
+        int cont=0;
+        
+        do{
+            codigofac="";
+            for(int i=0; i<8;i++){
+                codigofac=codigofac+ (Math.floor(Math.random()*9));
+            }
+            for (SistemaFacturacion l:facturas){
+                if (l.codigofac.equals(codigofac)){
+                    cont=1;
+                }
+            }
+        }while(cont==1);
     }
 
     
@@ -49,6 +63,12 @@ public class SistemaFacturacion {
     
     public String toString(){
         return formatofac;
+    }
+    public String getCodigofac(){
+        return codigofac;
+    }
+    public LocalDateTime getFecha_emision(){
+        return fecha_emision;
     }
     
     
@@ -70,6 +90,18 @@ public class SistemaFacturacion {
     public static ArrayList<SistemaFacturacion> getFacturas() {
         return facturas;
     }
+    public int getDias_fact(){
+        return dias_fact;
+    }
+    public double getConsumokv(){
+        return consumokv;
+    }
+    public double getCargofijo(){
+        return Cargofijo;
+    }
+    public double getTotalpagar(){
+        return totalpagar;
+    };
 
     
     
