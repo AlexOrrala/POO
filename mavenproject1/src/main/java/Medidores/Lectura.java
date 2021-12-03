@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package Medidores;
 
 import java.time.LocalDateTime;
@@ -14,4 +9,14 @@ import java.time.LocalDateTime;
 public class Lectura {
     private LocalDateTime FechaToma;
     private double kilovatios;
+    public Lectura(LocalDateTime FechaToma,double kilovatios){
+        this.FechaToma=FechaToma;
+        this.kilovatios=kilovatios;
+    }
+    public LocalDateTime getFechaToma(){
+        return FechaToma;
+    }
+    public double getKilovatios(){
+        return kilovatios;
+    }
 }
