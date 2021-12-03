@@ -8,7 +8,7 @@ package Usuarios;
  *
  * @author samu_
  */
-public clas usuario{
+public class usuario{
     public String nombre;
     public String contrasenia;
     public Usuario(String nombre, String contrasenia){
