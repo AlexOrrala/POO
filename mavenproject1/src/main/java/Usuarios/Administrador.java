@@ -74,14 +74,62 @@ public class Administrador extends Usuario{
             int indice = planes.indexOf(nombre_plan);
             if(tipo.equals("a")){
                 MedidorAnalogico m = new MedidorAnalogico(PlanEnergia.getListas().get(indice), direccion,LocalDateTime.now(),0.00);
+                MedidorAnalogico.agregarMedidor(m);
                 Abonado abo = new Abonado(n_cedula, contrasenia);
                 
             }else{
                 MedidorDigital m = new MedidorDigital(PlanEnergia.getListas().get(indice), direccion);
+                MedidorDigital.agregarMedidor(m);
                 Abonado abo = new Abonado(n_cedula, contrasenia);
             }
         }
     }
+    public void lecturas(LocalDateTime fechainicio,LocalDateTime fechafin,String codigo1,String codigo2,int valor1,int valor2){
+        LocalDateTime fechacambia = fechainicio;
+        
+        
+        Random randon = new Random();
+        int valorsuma= valor1;
+        System.out.println("Fecha de inicio:" + fechainicio);
+        System.out.println("Hay dos medidores inteligentes");
+        System.out.println("Lecturas para medidor con código"+codigo1+"Con valor actual:" +valor1);
+        do{
+            
+            fechacambia = fechacambia.plusMinutes(10);
+            System.out.println(codigo1+", "+fechacambia +", "+valorsuma);
+            valorsuma += randon.nextInt(10);
+        }while(!(fechacambia.equals(fechafin)));
+        System.out.println("Lecturas para medidor con código"+codigo2+"Con valor actual:" +valor2);
+        fechacambia = fechainicio;
+        valorsuma= valor2;
+        do{
+            fechacambia = fechacambia.plusMinutes(10);
+            System.out.println(codigo2+", "+fechacambia +", "+valorsuma);
+            valorsuma += randon.nextInt(10);
+        }while(!(fechacambia.equals(fechafin)));
+        
+    }
+    
+    public void Facturacion(){
+        /*
+        Fecha de emisión: fecha en la que se emite la factura (la fecha en la que se hace la acción)
+        Código del Medidor
+        Nombre del Plan
+        Fecha lectura anterior: el valor en el campo fecha de lectura actual de la última factura.
+        Fecha lectura actual: la fecha de la última lectura encontrada para este medidor
+        Número de días Facturados
+        Lectura Anterior: el total en kilovatios en el medidor en la última factura
+        Lectura Actual: el total en kilovatios que marca el medidor según la última lectura registrada.
+        Consumo en kilovatios
+        Cargo Fijo del Plan
+        Total a Pagar (según la formula de arriba)
+        */
+        System.out.println("Analogico");
+        System.out.println("Fecha de emision: "+LocalDateTime.now());
+        
+        
+    }
+    
     public String generarContraseña(){
         char[] voca = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'};
         String contraseña="";

@@ -10,6 +10,7 @@ import Plan.PlanEnergia;
 import Plan.Provincias;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Random;
@@ -21,6 +22,7 @@ import java.util.Random;
 public class MedidorDigital extends Medidor{
     private LocalDateTime FechaToma;
     private double kilovatios;
+    private static ArrayList<MedidorDigital> listasmedidor = new ArrayList<MedidorDigital>();
     public MedidorDigital(PlanEnergia plan,String direccion){
         super(plan, direccion);
         Timer timer= new Timer();
@@ -34,6 +36,9 @@ public class MedidorDigital extends Medidor{
             
         };
         timer.schedule(anadir,0,1800000);
+    }
+    public static void agregarMedidor(MedidorDigital medidor){
+        listasmedidor.add(medidor);
     }
     public LocalDateTime getFechaToma(){
         return FechaToma;

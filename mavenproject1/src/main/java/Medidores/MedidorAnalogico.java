@@ -8,6 +8,7 @@ import Plan.PlanEnergia;
 import Plan.Provincias;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 public class MedidorAnalogico extends Medidor {
     private LocalDateTime FechaToma;
     private double kilovatios;
+    private static ArrayList<MedidorAnalogico> listasmedidor = new ArrayList<MedidorAnalogico>();
     public MedidorAnalogico(PlanEnergia plan,String direccion,LocalDateTime FechaToma, double kilovatios){
         super( plan, direccion);
         this.FechaToma=FechaToma;
@@ -31,6 +33,9 @@ public class MedidorAnalogico extends Medidor {
        return costo;
     }
     
+    public static void agregarMedidor(MedidorAnalogico medidor){
+        listasmedidor.add(medidor);
+    }
     
 }
 /*
