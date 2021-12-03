@@ -18,10 +18,10 @@ import java.util.Random;
  */
 public abstract class Medidor {
     private String codigo;
-    private PlanEnergia plan;
+    protected PlanEnergia plan;
     private String direccion;
-    private ArrayList<Lectura> lectura;
-    private LocalDateTime ultima_cobrada;
+    protected ArrayList<Lectura> lectura;
+    protected LocalDateTime ultima_cobrada;
     private static ArrayList<String> codesmedidores= new ArrayList<>();
     public String generarCodigo(){
         char[] voca = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'};
