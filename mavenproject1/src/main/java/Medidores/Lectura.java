@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 public class Lectura{
     private Local Datetime FechaToma;
     private double kilovatios;
-    public Lectura(LocalDateTime FechaTOma, double kilovatios){
+    public Lectura(LocalDateTime FechaToma, double kilovatios){
         this.FechaToma=FechaToma;
         this.kilovatios=kilovatios;
     }
-    public LocalDateTIm getFechaToma(){
+    public LocalDateTime getFechaToma(){
         return FechaToma;
     }
     public double getkilovatios(){
