@@ -21,7 +21,7 @@ public abstract class Medidor {
     private PlanEnergia plan;
     private String direccion;
     private ArrayList<Lectura> lectura;
-    private LocalDate ultima_cobrada;
+    private LocalDateTime ultima_cobrada;
     private static ArrayList<String> codesmedidores= new ArrayList<>();
     public String generarCodigo(){
         char[] voca = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'};
@@ -60,12 +60,32 @@ public abstract class Medidor {
     public Medidor(PlanEnergia Plan,String direccion){
         this.plan=plan;
         this.direccion=direccion;
-        ultima_cobrada=LocalDate.now();
+        ultima_cobrada=LocalDateTime.now();
         do{
             codigo=generarCodigo();
         }while(codesmedidores.contains(codigo));
         codesmedidores.add(codigo);
+        Lectura primera= new Lectura(ultima_cobrada,0);
         lectura=new ArrayList<>();
+        lectura.add(primera);
+    }
+    public String getCodigo(){
+        return codigo;
+    }
+    public PlanEnergia getPlan(){
+        return plan;
+    }
+    public String getDireccion(){
+        return direccion;
+    }
+    public ArrayList<Lectura> getLectura(){
+        return lectura;
+    }
+    public LocalDateTime getUltima_cobrada(){
+        return ultima_cobrada;
+    }
+    public void setUltima_cobrada(LocalDateTime ultima_cobrada){
+        this.ultima_cobrada=ultima_cobrada;
     }
     public abstract double calcularValorPagar(LocalDateTime fechaAccion);
     
