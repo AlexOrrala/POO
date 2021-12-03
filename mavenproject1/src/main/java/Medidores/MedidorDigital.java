@@ -21,7 +21,7 @@ import java.util.Random;
 public class MedidorDigital extends Medidor{
     private LocalDateTime FechaToma;
     private double kilovatios;
-    public MedidorDigital(String direccion, PlanEnergia plan){
+    public MedidorDigital(PlanEnergia plan,String direccion){
         super(plan, direccion);
         Timer timer= new Timer();
         TimerTask anadir= new TimerTask() {

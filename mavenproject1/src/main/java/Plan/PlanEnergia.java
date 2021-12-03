@@ -18,12 +18,20 @@ public class PlanEnergia {
     private ArrayList<Provincias> provincia;
     private ArrayList<HorarioPico> picos;
     private double cargob;
+    private static ArrayList<PlanEnergia> listas = new ArrayList<PlanEnergia>();
     public PlanEnergia(String nombre, double costoK,double cargob,ArrayList<Provincias> provincia,ArrayList<HorarioPico> picos){
         this.nombre=nombre;
         this.costoK=costoK;
         this.provincia=provincia;
         this.picos = picos;
         this.cargob=cargob;
+    }
+
+    public static void Agregarplan(PlanEnergia plan){
+        listas.add(plan);
+    }
+    public static ArrayList<PlanEnergia> getListas() {
+        return listas;
     }
     public String getNombre(){
         return nombre;

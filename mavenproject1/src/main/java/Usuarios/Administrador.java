@@ -5,9 +5,13 @@
 
 package Usuarios;
 
+import Medidores.Medidor;
+import Medidores.MedidorAnalogico;
+import Medidores.MedidorDigital;
 import Plan.HorarioPico;
 import Plan.PlanEnergia;
 import Plan.Provincias;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,40 +26,60 @@ public class Administrador extends Usuario{
         super(nombre, contrasenia);
     }
     
-    public void RegistrarPlan(String nombreplan,Double costokv, ArrayList<Provincias> provincias, ArrayList<HorarioPico> horas,ArrayList<PlanEnergia> planactual){
+    public void RegistrarPlan(String nombreplan,Double cargo,Double costokv, ArrayList<Provincias> provincias, ArrayList<HorarioPico> horas){
         int x=0;
-        for(PlanEnergia c : planactual){
+        for(PlanEnergia c : PlanEnergia.getListas()){
             if(c.getNombre()==nombreplan){
                 x = 5;
             }
         }
         if(x==5){
-        PlanEnergia plan = new PlanEnergia(nombreplan,costokv,provincias,horas);
-        planactual.add(plan);
+        PlanEnergia plan = new PlanEnergia(nombreplan,cargo,costokv,provincias,horas);
+        PlanEnergia.Agregarplan(plan);
         }
     }
-    public void RegistrarMedidor(String n_cedula,ArrayList<Abonado> abonados){
+    public void RegistrarMedidor(String n_cedula){
         int x = 0;
         Scanner sc = new Scanner(System.in);
-        for(Abonado c: abonados){
+        for(Abonado c: Abonado.getAbonado()){
             if(c.getNombre() == n_cedula){
                 x = 5;
             }
         }
         if(x!=5){
-            String nombre="";
+            String nombre_plan="";
             String direccion="";
             String contraseña ="";
+            ArrayList<String> planes = new ArrayList<String>();
             String tipo ="";
-            contraseña = generarContraseña();
+            contrasenia = generarContraseña();
             System.out.println("Ingrese dirección:");
             direccion = sc.nextLine();
-            System.out.println("Ingrese tipo del medidor:");
+            System.out.println("Ingrese letra del tipo del medidor:");
+            
+            do{
             System.out.println("a)Analógico\nb)Digital");
             tipo = sc.nextLine();
-            System.out.println("Ingrese nombre del Plan:");
-            nombre = sc.nextLine();
+            tipo = tipo.toLowerCase();
             
+            }while(!(tipo.equals("a") || tipo.equals("b")));
+            for(PlanEnergia c: PlanEnergia.getListas()){
+                planes.add(c.getNombre());
+            }
+            do{
+            System.out.println("Ingrese nombre del Plan:");
+            nombre_plan = sc.nextLine();
+            
+            }while(!(planes.contains(nombre_plan)));
+            int indice = planes.indexOf(nombre_plan);
+            if(tipo.equals("a")){
+                MedidorAnalogico m = new MedidorAnalogico(PlanEnergia.getListas().get(indice), direccion,LocalDateTime.now(),0.00);
+                Abonado abo = new Abonado(n_cedula, contrasenia);
+                
+            }else{
+                MedidorDigital m = new MedidorDigital(PlanEnergia.getListas().get(indice), direccion);
+                Abonado abo = new Abonado(n_cedula, contrasenia);
+            }
         }
     }
     public String generarContraseña(){
