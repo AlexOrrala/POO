@@ -59,10 +59,10 @@ public class MedidorDigital extends Medidor{
         for (Lectura i: lectura){
             for(HorarioPico l:plan.getPicos()){
                 if (l.getHorarioinicio().isBefore(i.getFechaToma().toLocalTime()) & l.getHorafin().isAfter(i.getFechaToma().toLocalTime())){
-                    total=total+i.getkilovatios()*plan.getCostoK()*2;
+                    total=total+i.getKilovatios()*plan.getCostoK()*2;
                 }
                 else{
-                    total=total+i.getkilovatios()*plan.getCostoK();
+                    total=total+i.getKilovatios()*plan.getCostoK();
                 }
                     
             }
