@@ -22,6 +22,7 @@ public abstract class Medidor {
     private String direccion;
     private ArrayList<Lectura> lectura;
     private LocalDate ultima_cobrada;
+    private static ArrayList<String> medidores= new ArrayList<>();
     public String generarCodigo(){
         char[] voca = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'};
         String codigoa="";
@@ -61,7 +62,9 @@ public abstract class Medidor {
         this.plan=plan;
         this.direccion=direccion;
         ultima_cobrada=LocalDate.now();
-        codigo=generarCodigo();
+        do{
+            codigo=generarCodigo();
+        }while(medidores.contains(codigo));
         lectura=new ArrayList<>();
     }
     public abstract double calcularValorPagar(LocalDateTime fechaAccion);
