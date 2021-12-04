@@ -222,8 +222,6 @@ public class Administrador extends Usuario{
     public void Facturacion(){
         
         System.out.println("Generando facturas...");
-        System.out.println("Manalogico"+MedidorAnalogico.getListasmedidor());
-        System.out.println("Manalogico"+MedidorDigital.getListasmedidor());
         for(MedidorAnalogico c : MedidorAnalogico.getListasmedidor()){
         String cadena = "";
         cadena = cadena.concat("\nAnalógico"+"");
@@ -246,6 +244,7 @@ public class Administrador extends Usuario{
             for(Abonado a: Abonado.getAbonado()){
                if(Abonado.Duenomedidor(c.getCodigo()).equals(a.getNombre()) ){
                    a.aregarfactura(s);
+                   System.out.println(a.getCorreo());
                    enviarConGMail(a.getCorreo(), "Factura", cadena);
                }
             }

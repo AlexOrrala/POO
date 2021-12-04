@@ -60,10 +60,10 @@ public class main {
         PlanEnergia.Agregarplan(new PlanEnergia("Plan1",5.5,500.0,provincias1,horaspicos));
         PlanEnergia.Agregarplan(new PlanEnergia("Plan2",4.5,300.0,provincias1,horaspicos));
         Abonado abo1  = new Abonado("Abonado1","1234");
-        abo1.setCorreo("zixjissuijju@gmail.com");
+        abo1.setCorreo("alex_orrala@hotmail.com");
         Abonado.agregarAbonado(abo1);
         Abonado abo2 = new Abonado("Abonado2",Administrador.generarContraseña());
-        abo2.setCorreo("cuentaarecibir@gmail.com");
+        abo2.setCorreo("zixjissuijju@gmail.com");
         Abonado.agregarAbonado(abo2);
         int contador =0;
         for(Abonado c: Abonado.getAbonado()){
