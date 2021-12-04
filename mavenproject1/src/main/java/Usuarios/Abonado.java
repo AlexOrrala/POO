@@ -154,76 +154,76 @@ public class Abonado extends Usuario{
             if (l.getCodigo().equals(codmed)){
                 for (Lectura a:l.getLectura()){
                     if(a.getFechaToma().toLocalDate().isAfter(fechai) & a.getFechaToma().toLocalDate().isBefore(fechaf)){
-                        if(a.getFechaToma().toLocalTime().equals(LocalTime.of(0,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(1,0))){
+                        if(a.getFechaToma().toLocalTime().equals(LocalTime.of(0,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(1,0))){
                             prom01=prom01+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(1,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(2,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(1,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(2,0))){
                             prom12=prom12+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(2,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(3,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(2,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(3,0))){
                             prom23=prom23+a.getKilovatios();
                         }
-                        else if (a.getFechaToma().toLocalTime().equals(LocalTime.of(3,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(4,0))){
+                        else if (a.getFechaToma().toLocalTime().equals(LocalTime.of(3,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(4,0))){
                             prom34=prom34+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(4,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(5,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(4,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(5,0))){
                             prom45=prom45+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(5,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(6,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(5,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(6,0))){
                             prom56=prom56+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(6,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(7,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(6,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(7,0))){
                             prom67=prom67+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(7,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(8,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(7,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(8,0))){
                             prom78=prom78+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(8,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(9,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(8,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(9,0))){
                             prom89=prom89+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(9,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(10,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(9,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(10,0))){
                             prom910=prom910+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(10,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(11,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(10,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(11,0))){
                             prom1011=prom1011+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(11,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(12,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(11,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(12,0))){
                             prom1112=prom1112+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(12,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(13,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(12,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(13,0))){
                             prom1213=prom1213+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(13,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(14,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(13,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(14,0))){
                             prom1314=prom1314+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(14,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(15,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(14,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(15,0))){
                             prom1415=prom1415+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(15,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(16,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(15,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(16,0))){
                             prom1516=prom1516+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(16,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(17,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(16,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(17,0))){
                             prom1617=prom1617+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(17,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(18,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(17,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(18,0))){
                             prom1718=prom1718+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(18,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(19,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(18,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(19,0))){
                             prom1819=prom1819+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(19,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(20,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(19,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(20,0))){
                             prom1920=prom1920+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(20,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(21,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(20,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(21,0))){
                             prom2021=prom2021+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(21,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(22,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(21,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(22,0))){
                             prom2122=prom2122+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(22,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(23,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(22,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(23,0))){
                             prom2223=prom2223+a.getKilovatios();
                         }
-                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(23,0))& a.getFechaToma().toLocalTime().isBefore(LocalTime.of(0,0))){
+                        else if(a.getFechaToma().toLocalTime().equals(LocalTime.of(23,0))|| a.getFechaToma().toLocalTime().isBefore(LocalTime.of(0,0))){
                             prom230=prom230+a.getKilovatios();
                         }
                         cont=cont++;
