@@ -86,10 +86,15 @@ public class Abonado extends Usuario{
         }
         System.out.print("Ingrese codigo factura: ");
         String codigoacomp=sc.nextLine();
+        int cont=0;
         for (SistemaFacturacion i: facturas){
             if(i.getCodigofac().equals(codigoacomp)){
                 System.out.printf("Medidor: %s\nNombredelplan: %s\nDesde: %c\nHasta: %c\nDias Facturas: %d\nLectura anterior: %d\nLectura nueva: %d\nConsumo: %d\nCargo Fijo: %5.2f\nTotal a pagar:%5.2f",i.getMedidor().getCodigo(),i.getMedidor().getPlan().getNombre(),i.getMedidor().getUltima_cobrada(),i.getFecha_emision(),i.getDias_fact(),i.getAnterior(),i.getActual(),i.getConsumokv(),i.getCargofijo(),i.getTotalpagar());
+                cont=1;
             }
+        }
+        if(cont==0){
+            System.out.print("No se ha encontrado factura");
         }
     }
     public void ConsultarHistoricoFacturado(){
