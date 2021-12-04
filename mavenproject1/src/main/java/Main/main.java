@@ -86,7 +86,7 @@ public class main {
         for(Administrador c: Admins){
             if(c.getNombre().equals(nombre) && c.getContrasenia().equals(contrasenia)){
                 inicio = true;
-                Admin();
+                Admin(c);
         }
        }
         for(Operario c: Operarios){
@@ -98,28 +98,16 @@ public class main {
             System.out.println("Error el usuario y contraseña no coinciden con ninguna cuenta.");
         }
     }
-    private static ArrayList<String> ob_Contrasena(){
-        ArrayList<String> listaf= new ArrayList<String>();
-        for(Abonado c: Abonado.getAbonado()){
-            listaf.add(c.getContrasenia());
-       }
-        for(Administrador c: Admins){
-            listaf.add(c.getContrasenia());
-       }
-        for(Operario c: Operarios){
-            listaf.add(c.getContrasenia());
-       }
-        return listaf;
-    }
 
-    private static void Admin() {
+    private static void Admin(Administrador c) {
         int menu=0;
         do{
             switch(menu){
                 case 1:
+                    c.RegistrarPlan();
                     break;
             }
-        }while();
+        }while(menu==0);
     }
 
 }

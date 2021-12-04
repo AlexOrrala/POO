@@ -9,5 +9,7 @@ package Plan;
  * @author samu_
  */
 public enum Provincias {
-    Azuay,Bolívar,Cañar,Carchi,Chimborazo,Cotopaxi,ElOro,Esmeraldas,Galápagos,Guayas,Imbabura,Loja,LosRios,Manabí,MoronaSantiago,Napo,Orellana,Pastaza,Pichincha,SantaElena,SantoDomingodelosTsáchilas,Sucumbíos,Tungurahua,ZamoraChinchipe
+    Azuay,Bolívar,Cañar,Carchi,Chimborazo,Cotopaxi,ElOro,Esmeraldas,Galápagos,Guayas,Imbabura,Loja,LosRios,Manabí,MoronaSantiago,Napo,Orellana,Pastaza,Pichincha,SantaElena,SantoDomingodelosTsáchilas,Sucumbíos,Tungurahua,ZamoraChinchipe;
+    
+  
 }
