@@ -62,7 +62,7 @@ public class main {
         Abonado abo1  = new Abonado("Abonado1","1234");
         abo1.setCorreo("alex_orrala@hotmail.com");
         Abonado.agregarAbonado(abo1);
-        Abonado abo2 = new Abonado("Abonado2",Administrador.generarContraseña());
+        Abonado abo2 = new Abonado("Abonado2","1201");
         abo2.setCorreo("zixjissuijju@gmail.com");
         Abonado.agregarAbonado(abo2);
         int contador =0;
