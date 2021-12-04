@@ -227,48 +227,52 @@ public class Administrador extends Usuario{
         cadena = "Código del medidor:" + c.getCodigo()+"\n";
         cadena = "Nombre del plan:" + c.getPlan().getNombre()+"\n";
         cadena = "Fecha lectura anterior:" + c.getUltima_cobrada()+"\n";
-        cadena = "Fecha lectura actual:" + c.getLectura().get(c.getLectura().size()).getFechaToma()+"\n";
+        cadena = "Fecha lectura actual:" + c.getLectura().get(c.getLectura().size()-1).getFechaToma()+"\n";
         LocalDateTime hoy = LocalDateTime.now();
         int dias = hoy.getDayOfYear() - c.getUltima_cobrada().getDayOfYear();
         cadena = "Número de dias:" + dias+"\n";
-        cadena = "Lectura Anterior:" + c.getLectura().get(c.getLectura().size() -1).getKilovatios()+"\n";
-        cadena = "Lectura Actual:" + c.getLectura().get(c.getLectura().size()).getKilovatios()+"\n";
+        cadena = "Lectura Anterior:" + c.getLectura().get(c.getLectura().size() -2).getKilovatios()+"\n";
+        cadena = "Lectura Actual:" + c.getLectura().get(c.getLectura().size()-1).getKilovatios()+"\n";
         cadena = "Consumo kilovatios:" + c.getKilovatios()+"\n";
         cadena = "Cargo Fijo del Plan:" + c.getPlan().getCargob()+"\n";
         cadena = "Totalpagar" + c.calcularValorPagar(hoy)+"\n";
-            SistemaFacturacion s = new SistemaFacturacion(c, hoy, c.getLectura().get(c.getLectura().size() -1),c.getLectura().get(c.getLectura().size()) , dias,c.getKilovatios(), c.getPlan().getCargob(), c.calcularValorPagar(hoy));
+            SistemaFacturacion s = new SistemaFacturacion(c, hoy, c.getLectura().get(c.getLectura().size() -2),c.getLectura().get(c.getLectura().size()-1) , dias,c.getKilovatios(), c.getPlan().getCargob(), c.calcularValorPagar(hoy));
             s.setFormatofac(cadena);
             SistemaFacturacion.aregarfactura(s);
             for(Abonado a: Abonado.getAbonado()){
-               if(Abonado.Duenomedidor(c.getCodigo()).equals(a) ){
+               if(Abonado.Duenomedidor(c.getCodigo()).equals(a.getNombre()) ){
                    a.aregarfactura(s);
+                   enviarConGMail(a.getCorreo(), "Factura", cadena);
                }
             }
         }
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
         String cadena = "";
-        cadena += "Digital"+"\n";
-        cadena += "Fecha de emision: "+LocalDateTime.now()+"\n";
-        cadena += "Código del medidor:" + c.getCodigo()+"\n";
-        cadena += "Nombre del plan:" + c.getPlan().getNombre()+"\n";
-        cadena += "Fecha lectura anterior:" + c.getUltima_cobrada()+"\n";
-        cadena += "Fecha lectura actual:" + c.getLectura().get(c.getLectura().size()).getFechaToma()+"\n";
+        cadena = cadena + "Digital"+"\n";
+        cadena = cadena +"Fecha de emision: "+LocalDateTime.now()+"\n";
+        cadena = cadena +"Código del medidor:" + c.getCodigo()+"\n";
+        cadena = cadena +"Nombre del plan:" + c.getPlan().getNombre()+"\n";
+        cadena = cadena +"Fecha lectura anterior:" + c.getUltima_cobrada()+"\n";
+        cadena = cadena + "Fecha lectura actual:" + c.getLectura().get(c.getLectura().size()).getFechaToma()+"\n";
         LocalDateTime hoy = LocalDateTime.now();
         int dias = hoy.getDayOfYear() - c.getUltima_cobrada().getDayOfYear();
-        cadena += "Número de dias:" + dias+"\n";
-        cadena += "Lectura Anterior:" + c.getLectura().get(c.getLectura().size() -1).getKilovatios()+"\n";
-        cadena += "Lectura Actual:" + c.getLectura().get(c.getLectura().size()).getKilovatios()+"\n";
-        cadena += "Consumo kilovatios:" + c.getKilovatios()+"\n";
-        cadena += "Cargo Fijo del Plan:" + c.getPlan().getCargob()+"\n";
-        cadena += "Totalpagar" + c.calcularValorPagar(hoy)+"\n";
+        cadena = cadena +"Número de dias:" + dias+"\n";
+        cadena = cadena + "Lectura Anterior:" + c.getLectura().get(c.getLectura().size() -1).getKilovatios()+"\n";
+        cadena = cadena + "Lectura Actual:" + c.getLectura().get(c.getLectura().size()).getKilovatios()+"\n";
+        cadena = cadena + "Consumo kilovatios:" + c.getKilovatios()+"\n";
+        cadena = cadena +"Cargo Fijo del Plan:" + c.getPlan().getCargob()+"\n";
+        cadena = cadena + "Totalpagar" + c.calcularValorPagar(hoy)+"\n";
             SistemaFacturacion s = new SistemaFacturacion(c, hoy, c.getLectura().get(c.getLectura().size() -1),c.getLectura().get(c.getLectura().size()) , dias,c.getKilovatios(), c.getPlan().getCargob(), c.calcularValorPagar(hoy));
             SistemaFacturacion.aregarfactura(s);
+            s.setFormatofac(cadena);
             for(Abonado a: Abonado.getAbonado()){
-               if(Abonado.Duenomedidor(c.getCodigo()).equals(a) ){
+               if(Abonado.Duenomedidor(c.getCodigo()).equals(a.getNombre()) ){
                    a.aregarfactura(s);
+                   enviarConGMail(a.getCorreo(), "Factura", cadena);
                }
             }
         }
+        System.out.println("Generando facturas...");
         
     }
     
