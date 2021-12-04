@@ -246,21 +246,21 @@ public class Administrador extends Usuario{
             }
         }
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
-        String cadena;
-        cadena = "Digital"+"\n";
-        cadena = "Fecha de emision: "+LocalDateTime.now()+"\n";
-        cadena = "Código del medidor:" + c.getCodigo()+"\n";
-        cadena = "Nombre del plan:" + c.getPlan().getNombre()+"\n";
-        cadena = "Fecha lectura anterior:" + c.getUltima_cobrada()+"\n";
-        cadena = "Fecha lectura actual:" + c.getLectura().get(c.getLectura().size()).getFechaToma()+"\n";
+        String cadena = "";
+        cadena += "Digital"+"\n";
+        cadena += "Fecha de emision: "+LocalDateTime.now()+"\n";
+        cadena += "Código del medidor:" + c.getCodigo()+"\n";
+        cadena += "Nombre del plan:" + c.getPlan().getNombre()+"\n";
+        cadena += "Fecha lectura anterior:" + c.getUltima_cobrada()+"\n";
+        cadena += "Fecha lectura actual:" + c.getLectura().get(c.getLectura().size()).getFechaToma()+"\n";
         LocalDateTime hoy = LocalDateTime.now();
         int dias = hoy.getDayOfYear() - c.getUltima_cobrada().getDayOfYear();
-        cadena = "Número de dias:" + dias+"\n";
-        cadena = "Lectura Anterior:" + c.getLectura().get(c.getLectura().size() -1).getKilovatios()+"\n";
-        cadena = "Lectura Actual:" + c.getLectura().get(c.getLectura().size()).getKilovatios()+"\n";
-        cadena = "Consumo kilovatios:" + c.getKilovatios()+"\n";
-        cadena = "Cargo Fijo del Plan:" + c.getPlan().getCargob()+"\n";
-        cadena = "Totalpagar" + c.calcularValorPagar(hoy)+"\n";
+        cadena += "Número de dias:" + dias+"\n";
+        cadena += "Lectura Anterior:" + c.getLectura().get(c.getLectura().size() -1).getKilovatios()+"\n";
+        cadena += "Lectura Actual:" + c.getLectura().get(c.getLectura().size()).getKilovatios()+"\n";
+        cadena += "Consumo kilovatios:" + c.getKilovatios()+"\n";
+        cadena += "Cargo Fijo del Plan:" + c.getPlan().getCargob()+"\n";
+        cadena += "Totalpagar" + c.calcularValorPagar(hoy)+"\n";
             SistemaFacturacion s = new SistemaFacturacion(c, hoy, c.getLectura().get(c.getLectura().size() -1),c.getLectura().get(c.getLectura().size()) , dias,c.getKilovatios(), c.getPlan().getCargob(), c.calcularValorPagar(hoy));
             SistemaFacturacion.aregarfactura(s);
             for(Abonado a: Abonado.getAbonado()){

@@ -60,7 +60,7 @@ public class Abonado extends Usuario{
     }
     public static String Duenomedidor(String codigo){
         String abonado_resultante = "";
-        for(Abonado c : abonado){
+        for(Abonado c : getAbonado()){
             for(Medidor m : c.getListasmedidor()){
                 System.out.println(m.getCodigo());
                 if(m.getCodigo().equals(codigo)){

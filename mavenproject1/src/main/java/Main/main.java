@@ -66,13 +66,14 @@ public class main {
         int contador =0;
         for(Abonado c: Abonado.getAbonado()){
             if(contador==0){
-            c.agregarmedidor(new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion",LocalDateTime.now(),210.0));
-            MedidorAnalogico.agregarMedidor(new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion",LocalDateTime.now(),210.0));
-            c.agregarmedidor(new MedidorDigital(PlanEnergia.getListas().get(1),"direccion2"));
-            MedidorDigital.agregarMedidor(new MedidorDigital(PlanEnergia.getListas().get(1),"direccion2"));
-            }else{
-            c.agregarmedidor(new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion3",LocalDateTime.now(),120));
-            MedidorAnalogico.agregarMedidor(new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion3",LocalDateTime.now(),120));
+            MedidorAnalogico m1 = new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion",LocalDateTime.now(),210.0);
+            c.agregarmedidor(m1);
+            MedidorDigital d1 = new  MedidorDigital(PlanEnergia.getListas().get(1),"direccion2");
+            c.agregarmedidor(d1);
+            }else if(contador ==1){
+                MedidorAnalogico m3 =new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion3",LocalDateTime.now(),120);
+            c.agregarmedidor(m3);
+            MedidorAnalogico.agregarMedidor(m3);
             }
             contador++;
         }
