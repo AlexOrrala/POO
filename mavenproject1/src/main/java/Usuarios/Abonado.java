@@ -122,6 +122,7 @@ public class Abonado extends Usuario{
             if (i==0){
                 cont=3;
             }
+            i--;
             
         }
     }
