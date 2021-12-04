@@ -62,7 +62,6 @@ public class Abonado extends Usuario{
         String abonado_resultante = "";
         for(Abonado c : getAbonado()){
             for(Medidor m : c.getListasmedidor()){
-                System.out.println(m.getCodigo());
                 if(m.getCodigo().equals(codigo)){
                     abonado_resultante = c.getNombre();
                 }
