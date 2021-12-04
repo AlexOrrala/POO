@@ -16,8 +16,15 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * 
@@ -40,11 +47,11 @@ public class Administrador extends Usuario{
         nombreplan = sc.nextLine();
         
         for(PlanEnergia c : PlanEnergia.getListas()){
-            if(c.getNombre()==nombreplan){
+            if(c.getNombre().equals(nombreplan)){
                 x = 5;
             }
         }
-        if(x==5){
+        if(x!=5){
             
             System.out.println("Ingrese Cargo:");
             do{
@@ -65,43 +72,48 @@ public class Administrador extends Usuario{
             do{
             do{
                 int houri=0,min1=0,min2=0,hourf=0;
-                
+                System.out.println("Ingrese Hora inicio pico.");
                 do{
                     System.out.println("Ingrese horas:");                
                     houri = sc.nextInt();
-                }while(houri >0 && houri<=24);
+                }while(!(houri >=0 && houri<=24));
                 do{
                     System.out.println("Ingrese min:");  
                     min1 = sc.nextInt();
-                }while(min1 >0 && min1<60);
+                }while(!(min1 >=0 && min1<60));
                 Inicio = LocalTime.of(houri, min1);
-                
+                System.out.println("Ingrese Hora  fin pico.");
                 do{
                     System.out.println("Ingrese horas:");                
                     hourf = sc.nextInt();
-                }while(hourf >0 && hourf<=24);
+                }while(!(hourf >=0 && hourf<=24));
                 do{
                     System.out.println("Ingrese min:");  
                     min2 = sc.nextInt();
-                }while(min2 >0 && min2<60);
+                }while(!(min2 >=0 && min2<60));
                 Fin = LocalTime.of(hourf, min2);
                 if(houri<hourf){
                     confirmar =0;
                 }else{
                     if(min1<min2){
                         confirmar=0;
+                    } else{
+                        System.out.println("Rango de tiempo no valido.");
                     }
                 }
                 
             }while(confirmar!=0);
                 HorarioPico h1 = new HorarioPico(Inicio, Fin);
                 horariospico.add(h1);
+                sc.nextLine();
                 System.out.println("Desea ingresar otra fecha(Y/N)");
                 confirmarfecha = sc.nextLine();
+                confirmarfecha = confirmarfecha.toUpperCase();
             }while(confirmarfecha.equals("Y"));
             
             PlanEnergia plan = new PlanEnergia(nombreplan,cargo,costokv,listaprov,horariospico);
             PlanEnergia.Agregarplan(plan);
+            System.out.println("Plan Registrado.");
         }else{
             System.out.println("El Plan ya existe");
             }
@@ -109,20 +121,25 @@ public class Administrador extends Usuario{
     public void RegistrarMedidor(String n_cedula){
         int x = 0;
         Scanner sc = new Scanner(System.in);
-        for(Abonado c: Abonado.getAbonado()){
-            if(c.getNombre() == n_cedula){
-                x = 5;
-            }
-        }
-        if(x!=5){
+        Abonado exist;
+        
             String nombre_plan="";
             String direccion="";
+            Abonado abo;
             String contraseña ="";
             ArrayList<String> planes = new ArrayList<String>();
             String tipo ="";
+            String correo="";
             contrasenia = generarContraseña();
+            System.out.println("Imgrese Correo:");
+            do{
+                correo= sc.nextLine();
+            }while(correo=="");
+            
             System.out.println("Ingrese dirección:");
+            do{
             direccion = sc.nextLine();
+            }while(direccion=="");
             System.out.println("Ingrese letra del tipo del medidor:");
             
             do{
@@ -136,6 +153,7 @@ public class Administrador extends Usuario{
             }
             do{
             System.out.println("Ingrese nombre del Plan:");
+            
             nombre_plan = sc.nextLine();
             
             }while(!(planes.contains(nombre_plan)));
@@ -143,39 +161,62 @@ public class Administrador extends Usuario{
             if(tipo.equals("a")){
                 MedidorAnalogico m = new MedidorAnalogico(PlanEnergia.getListas().get(indice), direccion,LocalDateTime.now(),0.00);
                 MedidorAnalogico.agregarMedidor(m);
-                Abonado abo = new Abonado(n_cedula, contrasenia);
+                
+                for(Abonado c: Abonado.getAbonado()){
+                    if(c.getNombre().equals( n_cedula)){
+                        x=5;
+                        c.agregarmedidor(m);
+                    }
+                }
+                if(x!=5){
+                    abo = new Abonado(n_cedula, contrasenia);
+                    abo.agregarmedidor(m);
+                    Abonado.agregarAbonado(abo);
+                    abo.setCorreo(correo);
+                    enviarConGMail(abo.getCorreo(), "Creacion de cuenta", abo.mensaje());
+                }
+                
                 
             }else{
                 MedidorDigital m = new MedidorDigital(PlanEnergia.getListas().get(indice), direccion);
                 MedidorDigital.agregarMedidor(m);
-                Abonado abo = new Abonado(n_cedula, contrasenia);
+                abo = new Abonado(n_cedula, contrasenia);
+                abo.agregarmedidor(m);
+                for(Abonado c: Abonado.getAbonado()){
+                    if(c.getNombre().equals( n_cedula)){
+                        x=5;
+                        c.agregarmedidor(m);
+                    }
+                }
+                if(x!=5){
+                    abo = new Abonado(n_cedula, contrasenia);
+                    abo.agregarmedidor(m);
+                    Abonado.agregarAbonado(abo);
+                    abo.setCorreo(correo);
+                    enviarConGMail(abo.getCorreo(), "Creacion de cuenta", abo.mensaje());
+                    
+                }
             }
-        }
     }
-    public void lecturas(LocalDateTime fechainicio,LocalDateTime fechafin,String codigo1,String codigo2,int valor1,int valor2){
+    
+    public void lecturas(LocalDateTime fechainicio,LocalDateTime fechafin){
         LocalDateTime fechacambia = fechainicio;
         
         
         Random randon = new Random();
-        int valorsuma= valor1;
         System.out.println("Fecha de inicio:" + fechainicio);
-        System.out.println("Hay dos medidores inteligentes");
-        System.out.println("Lecturas para medidor con código"+codigo1+"Con valor actual:" +valor1);
+        System.out.println("Fecha de inicio:" + fechafin);
+        System.out.println("Hay "+MedidorDigital.getListasmedidor().size()+" medidores inteligentes");
+        for(MedidorDigital c: MedidorDigital.getListasmedidor()){
+        System.out.println("Lecturas para medidor con código"+c.getCodigo()+"Con valor actual:" +c.getKilovatios());
+        double valorsuma = c.getKilovatios();
         do{
             
             fechacambia = fechacambia.plusMinutes(10);
-            System.out.println(codigo1+", "+fechacambia +", "+valorsuma);
+            System.out.println(c.getCodigo()+", "+fechacambia +", "+valorsuma);
             valorsuma += randon.nextInt(10);
-        }while(!(fechacambia.equals(fechafin)));
-        System.out.println("Lecturas para medidor con código"+codigo2+"Con valor actual:" +valor2);
-        fechacambia = fechainicio;
-        valorsuma= valor2;
-        do{
-            fechacambia = fechacambia.plusMinutes(10);
-            System.out.println(codigo2+", "+fechacambia +", "+valorsuma);
-            valorsuma += randon.nextInt(10);
-        }while(!(fechacambia.equals(fechafin)));
-        
+        }while(fechacambia.isBefore(fechafin));
+        }
     }
     
     public void Facturacion(){
@@ -272,4 +313,33 @@ public class Administrador extends Usuario{
         }while(!(Character.isUpperCase(contraseña.charAt(randon_n))));
         return contraseña;
     }
+    public static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
+    // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
+    String remitente = "ajorrala@fiec.espol.edu.ec";  //Para la dirección nomcuenta@gmail.com
+    String clave = "Amex020517";
+    Properties props = System.getProperties();
+    props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
+    props.put("mail.smtp.user", remitente);
+    props.put("mail.smtp.clave", clave);    //La clave de la cuenta
+    props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
+    props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
+    props.put("mail.smtp.port", "587"); //El puerto SMTP seguro de Google
+
+    Session session = Session.getDefaultInstance(props);
+    MimeMessage message = new MimeMessage(session);
+
+    try {
+        message.setFrom(new InternetAddress(remitente));
+        message.addRecipients(Message.RecipientType.TO, destinatario);   //Se podrían añadir varios de la misma manera
+        message.setSubject(asunto);
+        message.setText(cuerpo);
+        Transport transport = session.getTransport("smtp");
+        transport.connect("smtp.gmail.com", remitente, clave);
+        transport.sendMessage(message, message.getAllRecipients());
+        transport.close();
+    }
+    catch (MessagingException me) {
+        me.printStackTrace();   //Si se produce un error
+    }
+}
 }

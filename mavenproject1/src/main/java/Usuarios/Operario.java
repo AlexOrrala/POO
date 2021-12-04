@@ -22,33 +22,30 @@ public class Operario extends Usuario{
     public Operario(String nombre, String contrasenia) {
         super(nombre, contrasenia);
     }
-    public void registrarmedicion(String codigo,Double kv){
+    public void registrarmedicion(String codigo,Double kv,Operario op){
         Scanner sc = new Scanner(System.in);
         Lectura l; 
         for(MedidorDigital c : MedidorDigital.getListasmedidor()){
             if(c.getCodigo().equals(codigo)){
-                System.out.println("Medidor Digital a nombre de "+ Abonado.Duenomedidor(codigo).getNombre() +":+codigo");
+                System.out.println("Medidor Digital a nombre de "+ Abonado.Duenomedidor(codigo) +" : "+ codigo);
                 System.out.println("Ultima lectura realizada: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getFechaToma() );
                 System.out.println("Ultima lectura anterior: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios());
                 System.out.println("Lectura Actual:");
                 System.out.println("Kilovatios consumidos:"+  (c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios() - kv));
                 l = new Lectura(LocalDateTime.now(), kv);
-                l.setOperario(this);
+                l.setOperario(op);
                 c.agregarlectura(l);
             }
         }
         for(MedidorAnalogico c : MedidorAnalogico.getListasmedidor()){
             if(c.getCodigo().equals(codigo)){
-                System.out.println("Medidor Analógico a nombre de "+ Abonado.Duenomedidor(codigo) +":+codigo");
+                System.out.println("Medidor Analógico a nombre de "+ Abonado.Duenomedidor(codigo) +":"+codigo);
                 System.out.println("Ultima lectura realizada: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getFechaToma() );
                 System.out.println("Ultima lectura anterior: " +c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios());
                 System.out.println("Lectura Actual:");
-                do{
-                kv = sc.nextDouble();
-                }while(kv.equals(""));
                 System.out.println("Kilovatios consumidos:"+  (c.getListasmedidor().get(c.getListasmedidor().size()-1).getKilovatios() - kv));
                 l = new Lectura(LocalDateTime.now(), kv);
-                l.setOperario(this);
+                l.setOperario(op);
                 c.agregarlectura(l);
             }
         }

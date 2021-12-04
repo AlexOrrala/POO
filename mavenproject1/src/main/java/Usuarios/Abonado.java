@@ -42,7 +42,15 @@ public class Abonado extends Usuario{
         return listasmedidor;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
 
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    
 
     public static ArrayList<Abonado> getAbonado() {
         return abonado;
@@ -50,12 +58,13 @@ public class Abonado extends Usuario{
     public static void agregarAbonado(Abonado abo){
         abonado.add(abo);
     }
-    public static Abonado Duenomedidor(String codigo){
-        Abonado abonado_resultante = new Abonado("user", "cod");
+    public static String Duenomedidor(String codigo){
+        String abonado_resultante = "";
         for(Abonado c : abonado){
             for(Medidor m : c.getListasmedidor()){
+                System.out.println(m.getCodigo());
                 if(m.getCodigo().equals(codigo)){
-                    abonado_resultante = c;
+                    abonado_resultante = c.getNombre();
                 }
             }
         }

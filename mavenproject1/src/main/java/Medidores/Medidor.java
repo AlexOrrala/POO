@@ -57,13 +57,16 @@ public abstract class Medidor {
         return codigoa;
     }
     public Medidor(PlanEnergia Plan,String direccion){
-        this.plan=plan;
+        this.plan=Plan;
         this.direccion=direccion;
+        String codigogen= "";
         ultima_cobrada=LocalDateTime.now();
         do{
-            codigo=generarCodigo();
+            codigogen =generarCodigo();
         }while(codesmedidores.contains(codigo));
-        codesmedidores.add(codigo);
+        codesmedidores.add(codigogen);
+        setCodigo(codigogen);
+        lectura = new ArrayList<Lectura>();
     }
     public String getCodigo(){
         return codigo;
@@ -72,6 +75,10 @@ public abstract class Medidor {
         return plan;
     }
 
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public static ArrayList<String> getCodesmedidores() {
         return codesmedidores;
     }
