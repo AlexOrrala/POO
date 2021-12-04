@@ -60,21 +60,24 @@ public class main {
         PlanEnergia.Agregarplan(new PlanEnergia("Plan1",5.5,500.0,provincias1,horaspicos));
         PlanEnergia.Agregarplan(new PlanEnergia("Plan2",4.5,300.0,provincias1,horaspicos));
         Abonado abo1  = new Abonado("Abonado1","1234");
-        abo1.setCorreo("samu_lucin@hotmail.com");
+        abo1.setCorreo("zixjissuijju@gmail.com");
         Abonado.agregarAbonado(abo1);
         Abonado abo2 = new Abonado("Abonado2",Administrador.generarContraseña());
-        abo2.setCorreo("alex_orrala@hotmail.com");
+        abo2.setCorreo("zixjissuijju@gmail.com");
         Abonado.agregarAbonado(abo2);
         int contador =0;
         for(Abonado c: Abonado.getAbonado()){
             if(contador==0){
             MedidorAnalogico m1 = new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion",LocalDateTime.now(),210.0);
             c.agregarmedidor(m1);
+            MedidorAnalogico.agregarMedidor(m1);
             MedidorDigital d1 = new  MedidorDigital(PlanEnergia.getListas().get(1),"direccion2");
             c.agregarmedidor(d1);
+            MedidorDigital.agregarMedidor(d1);
             }else if(contador ==1){
                 MedidorAnalogico m3 =new MedidorAnalogico(PlanEnergia.getListas().get(0),"direccion3",LocalDateTime.now(),120);
             c.agregarmedidor(m3);
+            
             MedidorAnalogico.agregarMedidor(m3);
             }
             contador++;
